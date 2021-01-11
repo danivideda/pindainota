@@ -24,9 +24,7 @@ class HomePage extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: NetworkImage(
-            "https://resource-hosting.s3.us-west-1.amazonaws.com/PhOmd728-[object Object]",
-          ),
+          image: AssetImage("assets/images/onboarding-bg.png"),
           fit: BoxFit.cover,
         ),
       ),
@@ -43,7 +41,7 @@ class HomePage extends StatelessWidget {
                 height: 103,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage("assets/images/BG.png"),
+                    image: AssetImage("assets/pindainota-logo.png"),
                     fit: BoxFit.cover,
                   ),
                 ),
