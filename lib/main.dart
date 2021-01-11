@@ -37,11 +37,11 @@ class HomePage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
-                width: 98,
-                height: 103,
+                width: 105,
+                height: 135,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage("assets/pindainota-logo.png"),
+                    image: AssetImage("assets/images/pindainota-logo.png"),
                     fit: BoxFit.cover,
                   ),
                 ),
