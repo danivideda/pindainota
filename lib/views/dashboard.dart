@@ -13,6 +13,9 @@ class _DashboardState extends State<Dashboard> {
 
   @override
   Widget build(BuildContext context) {
+    DocumentReference documentReference = FirebaseFirestore.instance.collection('users').doc(uid);
+    Future<DocumentSnapshot> projectSnapshot = documentReference.get();
+
     return Scaffold(
       appBar: AppBar(
         brightness: Brightness.light,
@@ -23,7 +26,7 @@ class _DashboardState extends State<Dashboard> {
         shadowColor: Colors.transparent,
         backgroundColor: Colors.transparent,
         title: Text(
-          'Rencana\nPembangunan\nDesa Alpukado',
+          "Rencana\nPembangunan\nDesa Alpukado",
           textAlign: TextAlign.center,
           style: TextStyle(
             fontWeight: FontWeight.w700,
@@ -33,55 +36,57 @@ class _DashboardState extends State<Dashboard> {
           ),
         ),
       ),
-      body: StreamBuilder(
-        stream: FirebaseFirestore.instance
-            .collection('users')
-            .doc(uid)
-            .collection('projects')
-            .snapshots(),
-        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-          if (!snapshot.hasData) {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          }
+      body: Center(
+        child: Container(
+          width: MediaQuery.of(context).size.width - 16,
+          child: StreamBuilder(
+            stream: documentReference.collection('projects')
+                .snapshots(),
+            builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+              if (!snapshot.hasData) {
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
 
-          return GridView.builder(
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-            ),
-            itemBuilder: (context, index) {
-              return Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Container(
-                  width: 100,
-                  height: 100,
-                  decoration: BoxDecoration(
-                      color: Color(
-                        0xff53b175,
-                      ),
-                      borderRadius: BorderRadius.all(Radius.circular(10))),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Center(
-                      child: Text(
-                        snapshot.data.docs[index]['nama_project'],
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontWeight: FontWeight.w700,
-                          fontFamily: 'Poppins',
-                          fontSize: 14,
-                          color: Colors.white,
+              return GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                ),
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Container(
+                      width: 100,
+                      height: 100,
+                      decoration: BoxDecoration(
+                          color: Color(
+                            0xff53b175,
+                          ),
+                          borderRadius: BorderRadius.all(Radius.circular(10))),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Center(
+                          child: Text(
+                            snapshot.data.docs[index]['nama_project'],
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontWeight: FontWeight.w700,
+                              fontFamily: 'Poppins',
+                              fontSize: 14,
+                              color: Colors.white,
+                            ),
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ),
+                  );
+                },
+                itemCount: snapshot.data.docs.length,
               );
             },
-            itemCount: snapshot.data.docs.length,
-          );
-        },
+          ),
+        ),
       ),
     );
   }
