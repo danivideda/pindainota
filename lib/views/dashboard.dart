@@ -12,7 +12,11 @@ class _DashboardState extends State<Dashboard> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        iconTheme: IconThemeData(
+          color: Colors.black, //change your color here
+        ),
+        shadowColor: Colors.transparent,
+        backgroundColor: Colors.transparent,
         title: Text(
           'Projects',
           style: TextStyle(
@@ -32,9 +36,8 @@ class _DashboardState extends State<Dashboard> {
               width: 100,
               height: 100,
               decoration: BoxDecoration(
-                color: Colors.grey,
-                borderRadius: BorderRadius.all(Radius.circular(10))
-              ),
+                  color: Colors.grey,
+                  borderRadius: BorderRadius.all(Radius.circular(10))),
               child: Center(child: Text(textList[index])),
             ),
           );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dashboard.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -162,7 +163,7 @@ class _LoginPageState extends State<LoginPage> {
                                   labelText: "Password",
                                   hintStyle: TextStyle(
                                     color: Color(
-                                      0xff7c7c7c,
+                                      0xffd4d4d4,
                                     ),
                                     fontWeight: FontWeight.w200,
                                     fontFamily: "Poppins",
@@ -205,10 +206,13 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   FlatButton(
                     onPressed: () {
-                      print("Button clicked!");
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => Dashboard()));
                     },
-                    child: Text(
-                      "Masuk",
+                    child: Center(
+                      child: Text(
+                        "Masuk",
+                      ),
                     ),
                     textColor: Colors.white,
                     color: Color(
