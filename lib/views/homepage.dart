@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pindainota/views/login.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -14,7 +15,7 @@ class HomePage extends StatelessWidget {
         backgroundColor: Colors.transparent,
         body: Center(
           child: Container(
-            height: MediaQuery.of(context).size.height / 1.3,
+            height: MediaQuery.of(context).size.height / 1.2,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -54,30 +55,65 @@ class HomePage extends StatelessWidget {
                         ),
                         textAlign: TextAlign.center,
                       ),
+
+                      // Container(
+                      //   child: Text(
+                      //     "Mari Kita Mulai",
+                      //     style: TextStyle(
+                      //       color: Colors.white,
+                      //       fontSize: 14,
+                      //       fontWeight: FontWeight.w500,
+                      //       fontFamily: "Poppins",
+                      //     ),
+                      //     textAlign: TextAlign.center,
+                      //   ),
+                      //   width: 285,
+                      //   height: 59,
+                      //   padding: EdgeInsets.only(
+                      //     top: 20,
+                      //     bottom: 21,
+                      //   ),
+                      //   decoration: BoxDecoration(
+                      //     color: Color(
+                      //       0xff53b175,
+                      //     ),
+                      //     borderRadius: BorderRadius.circular(
+                      //       10,
+                      //     ),
+                      //   ),
+                      // ),
+
                       Container(
-                        child: Text(
-                          "Mari Kita Mulai",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w500,
-                            fontFamily: "Poppins",
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                        width: 285,
-                        height: 59,
+                        width: MediaQuery.of(context).size.width / 1.2,
+                        height: 100,
                         padding: EdgeInsets.only(
                           top: 20,
                           bottom: 21,
                         ),
-                        decoration: BoxDecoration(
-                          color: Color(
-                            0xff53b175,
+                        child: TextButton(
+                          style: TextButton.styleFrom(
+                            primary: Colors.white,
+                            backgroundColor: Color(0xff53b175),
+                            onSurface: Colors.grey,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
                           ),
-                          borderRadius: BorderRadius.circular(
-                            10,
+                          child: Text(
+                            'Mari Kita Mulai',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                              fontFamily: "Poppins",
+                            ),
                           ),
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => LoginPage()));
+                          },
                         ),
                       ),
                     ],
