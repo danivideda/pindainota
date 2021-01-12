@@ -87,15 +87,18 @@ class MyScaffoldBody extends StatelessWidget {
                                   '533c5006555500020155005739525a0e4a064a0559465e5c4c465d085359595e0d40053d0903070455000101535a');
                               FlutterGeniusScan.scanWithConfiguration({
                                 'source': 'camera',
-                                'multiPage': true,
+                                'multiPage': false,
                                 'backgroundColor': '#53b175',
                                 'highlightColor': '#FFCE2E',
+                                'jpegQuality': 100,
                               }).then((result) {
-                                String pdfUrl = result['pdfUrl'];
-                                OpenFile.open(pdfUrl.replaceAll("file://", ''));
-                              },
-                                  onError: (error) =>
-                                      displayError(context, error));
+                                List scans = result['scans'];
+                                String enhancedUrl = scans[0]['enhancedUrl'];
+                                print(enhancedUrl);
+                                OpenFile.open(
+                                  enhancedUrl.replaceAll("file://", ''),
+                                );
+                              });
                             },
                             child: Center(
                               child: Text(
@@ -146,17 +149,15 @@ class MyScaffoldBody extends StatelessWidget {
                           width: 240,
                           child: FlatButton(
                             onPressed: () {
-                              FlutterGeniusScan.setLicenceKey(
-                                  '533c5006555500020155005739525a0e4a064a0559465e5c4c465d085359595e0d40053d0903070455000101535a');
-                              FlutterGeniusScan.scanWithConfiguration({
-                                'source': 'image',
-                                'multiPage': true,
-                              }).then((result) {
-                                String pdfUrl = result['pdfUrl'];
-                                OpenFile.open(pdfUrl.replaceAll("file://", ''));
-                              },
-                                  onError: (error) =>
-                                      displayError(context, error));
+                              AlertDialog alertDialog = new AlertDialog(
+                                content: new Container(
+                                    height: 200,
+                                    child: new Center(
+                                      child:
+                                          new Text("Maaf Belum Diimplementasi"),
+                                    )),
+                              );
+                              showDialog(context: context, child: alertDialog);
                             },
                             child: Center(
                               child: Text(
