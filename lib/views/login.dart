@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pindainota/providers/flutterfire.dart';
 import 'dashboard.dart';
 
 class LoginPage extends StatefulWidget {
@@ -205,9 +206,17 @@ class _LoginPageState extends State<LoginPage> {
                     height: 60.22,
                   ),
                   FlatButton(
-                    onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Dashboard()));
+                    onPressed: () async {
+                      bool shouldNavigate =
+                          await signIn(_emailField.text, _passwordField.text);
+                      if (shouldNavigate) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (BuildContext context) => Dashboard(),
+                          ),
+                        );
+                      }
                     },
                     child: Center(
                       child: Text(
