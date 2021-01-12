@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 // ignore: unused_import
 import 'views/homepage.dart';
-import 'views/login.dart';
 
 void main() {
   runApp(MyApp());
@@ -17,7 +16,7 @@ class MyApp extends StatelessWidget {
         textTheme: TextTheme(),
       ),
       // home: HomePage(),
-      home: LoginPage(),
+      home: HomePage(),
     );
   }
 }
