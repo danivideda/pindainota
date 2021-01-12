@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "596034739654",
+    "project_id": "pindainota",
+    "storage_bucket": "pindainota.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:596034739654:android:73a357dc1d21f3c2d166c7",
+        "android_client_info": {
+          "package_name": "com.example.pindainota"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "596034739654-9qs20hl71v4u49giq2se9kdd568r75um.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3sXNdNamTa_UsPQUog9FWy5AyaGTqJLo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "596034739654-9qs20hl71v4u49giq2se9kdd568r75um.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "596034739654-t29lnv8gkilbhs1r9brgdus3a0ru8hm0.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.pindainota"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
