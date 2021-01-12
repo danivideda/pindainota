@@ -1,3 +1,5 @@
+import 'package:firebase_ml_vision/firebase_ml_vision.dart';
+
 import 'package:flutter/material.dart';
 
 import 'package:flutter/services.dart';
@@ -91,13 +93,22 @@ class MyScaffoldBody extends StatelessWidget {
                                 'backgroundColor': '#53b175',
                                 'highlightColor': '#FFCE2E',
                                 'jpegQuality': 100,
-                              }).then((result) {
+                              }).then((result) async {
                                 List scans = result['scans'];
                                 String enhancedUrl = scans[0]['enhancedUrl'];
                                 print(enhancedUrl);
-                                OpenFile.open(
-                                  enhancedUrl.replaceAll("file://", ''),
-                                );
+                                String strippedUrl =
+                                    enhancedUrl.replaceAll("file://", '');
+                                OpenFile.open(strippedUrl);
+                                var nota = FirebaseVisionImage.fromFilePath(
+                                    strippedUrl);
+                                var textRecognizer =
+                                    FirebaseVision.instance.textRecognizer();
+                                var visionText =
+                                    await textRecognizer.processImage(nota);
+                                var _result = 'Result: ${visionText.text}';
+                                debugPrint('result: $_result');
+                                textRecognizer.close();
                               });
                             },
                             child: Center(
