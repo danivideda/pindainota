@@ -1,3 +1,8 @@
+# Fadlen cuman nyoba bikin halaman jadinya main.dart di ignore ajh
+lib/main.dart
+./dumbie/
+.gitignore
+
 # Miscellaneous
 *.class
 *.log
