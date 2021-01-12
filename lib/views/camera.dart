@@ -151,13 +151,16 @@ class MyScaffoldBody extends StatelessWidget {
                             onPressed: () {
                               AlertDialog alertDialog = new AlertDialog(
                                 content: new Container(
-                                    height: 200,
+                                    height: 40,
                                     child: new Center(
                                       child:
                                           new Text("Maaf Belum Diimplementasi"),
                                     )),
                               );
-                              showDialog(context: context, child: alertDialog);
+                              showDialog(
+                                  context: context,
+                                  child: alertDialog,
+                                  barrierDismissible: true);
                             },
                             child: Center(
                               child: Text(
