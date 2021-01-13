@@ -41,7 +41,7 @@ class _DetailNotaState extends State<DetailNota> {
               Container(
                 height: MediaQuery.of(context).size.height / 3,
                 width: MediaQuery.of(context).size.width - 16,
-                color: Colors.grey,
+                color: Color(0xff53b175),
                 child: Icon(Icons.image),
               ),
               Text(

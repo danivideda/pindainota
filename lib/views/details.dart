@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:pindainota/views/camera.dart';
 import 'package:pindainota/views/detailNota.dart';
 
 class Nota {
@@ -33,10 +34,10 @@ class _DetailsState extends State<Details> {
         brightness: Brightness.light,
         toolbarHeight: MediaQuery.of(context).size.height / 9,
         iconTheme: IconThemeData(
-          color: Colors.black, //change your color here
+          color: Colors.white, //change your color here
         ),
-        shadowColor: Colors.transparent,
-        backgroundColor: Colors.transparent,
+        // shadowColor: Colors.transparent,
+        backgroundColor: Color(0xff53b175),
         title: Text(
           widget.namaProject,
           textAlign: TextAlign.center,
@@ -44,7 +45,7 @@ class _DetailsState extends State<Details> {
             fontWeight: FontWeight.w700,
             fontFamily: 'Poppins',
             fontSize: 20,
-            color: Colors.black,
+            color: Colors.white,
           ),
         ),
       ),
@@ -73,6 +74,17 @@ class _DetailsState extends State<Details> {
             ),
           ),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (BuildContext context) => Camera()));
+        },
+        child: Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
+        backgroundColor: Colors.red[700],
       ),
     );
   }
