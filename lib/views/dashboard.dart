@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:pindainota/views/details.dart';
 
 class Dashboard extends StatefulWidget {
   @override
@@ -13,8 +14,8 @@ class _DashboardState extends State<Dashboard> {
 
   @override
   Widget build(BuildContext context) {
-    DocumentReference documentReference = FirebaseFirestore.instance.collection('users').doc(uid);
-    Future<DocumentSnapshot> projectSnapshot = documentReference.get();
+    DocumentReference documentReference =
+        FirebaseFirestore.instance.collection('users').doc(uid);
 
     return Scaffold(
       appBar: AppBar(
@@ -40,9 +41,9 @@ class _DashboardState extends State<Dashboard> {
         child: Container(
           width: MediaQuery.of(context).size.width - 16,
           child: StreamBuilder(
-            stream: documentReference.collection('projects')
-                .snapshots(),
-            builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+            stream: documentReference.collection('projects').snapshots(),
+            builder:
+                (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
               if (!snapshot.hasData) {
                 return Center(
                   child: CircularProgressIndicator(),
@@ -56,25 +57,36 @@ class _DashboardState extends State<Dashboard> {
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: EdgeInsets.all(8.0),
-                    child: Container(
-                      width: 100,
-                      height: 100,
-                      decoration: BoxDecoration(
-                          color: Color(
-                            0xff53b175,
-                          ),
-                          borderRadius: BorderRadius.all(Radius.circular(10))),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Center(
-                          child: Text(
-                            snapshot.data.docs[index]['nama_project'],
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontWeight: FontWeight.w700,
-                              fontFamily: 'Poppins',
-                              fontSize: 14,
-                              color: Colors.white,
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Details(
+                                    namaProject: snapshot.data.docs[index]
+                                        ['nama_project'])));
+                      },
+                      child: Container(
+                        width: 100,
+                        height: 100,
+                        decoration: BoxDecoration(
+                            color: Color(
+                              0xff53b175,
+                            ),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10))),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Center(
+                            child: Text(
+                              snapshot.data.docs[index]['nama_project'],
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontWeight: FontWeight.w700,
+                                fontFamily: 'Poppins',
+                                fontSize: 14,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
                         ),
