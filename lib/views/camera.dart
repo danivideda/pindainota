@@ -1,12 +1,13 @@
 import 'package:firebase_ml_vision/firebase_ml_vision.dart';
 
 import 'package:flutter/material.dart';
-
 import 'package:flutter/services.dart';
 import 'package:flutter_genius_scan/flutter_genius_scan.dart';
 
 import 'package:open_file/open_file.dart';
+
 import 'package:pindainota/views/homepage.dart';
+import 'package:pindainota/views/validate.dart';
 
 class Camera extends StatefulWidget {
   @override
@@ -106,9 +107,20 @@ class MyScaffoldBody extends StatelessWidget {
                                     FirebaseVision.instance.textRecognizer();
                                 var visionText =
                                     await textRecognizer.processImage(nota);
-                                var _result = 'Result: ${visionText.text}';
+                                var _result =
+                                    'Result: ${visionText.blocks[0].cornerPoints.toString()}';
                                 debugPrint('result: $_result');
                                 textRecognizer.close();
+
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => Validate(),
+                                        settings: RouteSettings(
+                                            arguments: <dynamic>[
+                                              strippedUrl,
+                                              visionText
+                                            ])));
                               });
                             },
                             child: Center(
